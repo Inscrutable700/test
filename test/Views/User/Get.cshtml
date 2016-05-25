@@ -1,0 +1,32 @@
+﻿@model test.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User</h2>
+<table>
+    <tr>
+        <td><b>ID:</b></td>
+        <td>@Model.ID</td>
+    </tr>
+    <tr>
+        <td><b>Name:</b></td>
+        <td><a href="@Url.Action("Get", "User", new { id = Model.ID})">@Model.Name</a></td>
+    </tr>
+    <tr>
+        <td><b>Email:</b></td>
+        <td>@Model.Email</td>
+    </tr>
+</table>
+
+<h2>Edit user - @Model.Name</h2>
+
+@using (Html.BeginForm("Update", "User", FormMethod.Post, null))
+{
+    <input type="hidden" name="id" value="@Model.ID"/>
+    <input type="text" name="name" value="@Model.Name"/>
+    <input type="email" name="email" value="@Model.Email"/>
+
+    <input type="submit" value="Update" />
+}
